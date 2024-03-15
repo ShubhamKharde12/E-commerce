@@ -8,6 +8,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Link } from "react-router-dom";
 
 const Products = () => {
+  const [search,setSearch]=useState("")
   const [data, setData] = useState([]);
   const [filter, setFilter] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -41,25 +42,25 @@ const Products = () => {
     return (
       <>
         <div className="col-12 py-5 text-center">
-          <Skeleton height={40} width={560} />
+          <Skeleton height={40} width={500} />
         </div>
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
+          <Skeleton height={400} />
         </div>
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
+          <Skeleton height={400} />
         </div>
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
+          <Skeleton height={400} />
         </div>
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
+          <Skeleton height={400} />
         </div>
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
+          <Skeleton height={400} />
         </div>
         <div className="col-md-4 col-sm-6 col-xs-8 col-12 mb-4">
-          <Skeleton height={592} />
+          <Skeleton height={400} />
         </div>
       </>
     );
@@ -69,10 +70,26 @@ const Products = () => {
     const updatedList = data.filter((item) => item.category === cat);
     setFilter(updatedList);
   }
+  const handleClick=()=>{
+    const filtered = data.filter(
+      (product) =>
+        product.title.toLowerCase().includes(search.toLowerCase())     );
+    setFilter(filtered);
+
+
+  }
+
+  const handleChangeSearch=(e)=>{
+    setSearch(e.target.value)
+    setFilter(data)
+  }
   const ShowProducts = () => {
     return (
       <>
+    
         <div className="buttons text-center py-5">
+    
+      <div />
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => setFilter(data)}>All</button>
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("men's clothing")}>Men's Clothing</button>
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("women's clothing")}>
@@ -81,6 +98,7 @@ const Products = () => {
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("jewelery")}>Jewelery</button>
           <button className="btn btn-outline-dark btn-sm m-2" onClick={() => filterProduct("electronics")}>Electronics</button>
         </div>
+       
 
         {filter.map((product) => {
           return (
@@ -124,9 +142,11 @@ const Products = () => {
   return (
     <>
       <div className="container my-3 py-3">
+      <input type="text"    placeholder="          search here"  onChange={(e)=>handleChangeSearch(e)} value={search} style={{padding:"10px",marginLeft:"35%",alignContent:"center"}}/>  <br />  <br />
+        <button className="btn btn-outline-dark btn-sm " onClick={()=>handleClick()} style={{padding:"9px",borderRadius:"10px",marginLeft:"41%",alignContent:"center"}}>Search</button>
         <div className="row">
           <div className="col-12">
-            <h2 className="display-5 text-center">Latest Products</h2>
+            {/* <h2 className="display-5 text-center">Latest Products</h2> */}
             <hr />
           </div>
         </div>

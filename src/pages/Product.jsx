@@ -71,8 +71,8 @@ const Product = () => {
                 className="img-fluid"
                 src={product.image}
                 alt={product.title}
-                width="400px"
-                height="400px"
+                width="350px"
+                height="300px"
               />
             </div>
             <div className="col-md-6 col-md-6 py-5">
@@ -135,8 +135,8 @@ const Product = () => {
                     className="card-img-top p-3"
                     src={item.image}
                     alt="Card"
-                    height={300}
-                    width={300}
+                    height={250}
+                    width={250}
                   />
                   <div className="card-body">
                     <h5 className="card-title">
@@ -177,9 +177,10 @@ const Product = () => {
           <div className="d-none d-md-block">
           <h2 className="">You may also Like</h2>
             <Marquee
-              pauseOnHover={true}
+              // pauseOnHover={true}
+              playonHover={true}
               pauseOnClick={true}
-              speed={50}
+              speed={100}
             >
               {loading2 ? <Loading2 /> : <ShowSimilarProduct />}
             </Marquee>
